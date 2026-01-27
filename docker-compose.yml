@@ -1,7 +1,7 @@
 version: '3.9'
 
 services:
-  gantuGoLang:
+  gantu-go-lang:
     build:
       context: .
       dockerfile: Dockerfile

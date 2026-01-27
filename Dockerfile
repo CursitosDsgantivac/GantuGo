@@ -8,7 +8,7 @@ COPY go.mod go.sum ./
 
 COPY *.go ./
 
-COPY internal/ ./
+COPY internal/ ./internal/
 
 # CGO_ENABLED=0 means: compile pure Go only, no C dependencies
 # GOOS=linux means: compile for Linux
