@@ -24,3 +24,18 @@ The program uses environment variables to configure its behavior. The following 
 The program uses environment variables to configure its behavior. The following environment variables are used:
 
 - TEST_ENV: The environment variable to use for the test environment
+
+# Docker commands
+
+- docker-compose up: Run the application in a Docker container
+- docker-compose down: Stop the application in a Docker container
+
+# Project folder structure
+
+- internal: Contains the source code of the application
+- cmd: Contains the main entry point of the application
+
+# Testing commands
+
+check the file testRequest.http for more information you should use the extension REST Client in VSCode to run the requests
+
