@@ -15,6 +15,8 @@ COPY internal/ ./internal/
 
 RUN CGO_ENABLED=0 GOOS=linux go build -o gantuProgram
 
-EXPOSE 8080
+ARG PORT=8080
+
+EXPOSE $PORT
 
 CMD ["./gantuProgram", "chiServer"]

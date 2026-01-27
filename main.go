@@ -13,6 +13,7 @@ func main() {
 		os.Exit(1)
 	}
 	var arg = os.Args[1]
+	utils.LoadEnvVariables()
 
 	switch arg {
 	case "server":

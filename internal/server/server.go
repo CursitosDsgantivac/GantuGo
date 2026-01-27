@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"main/internal/utils"
 	"net/http"
 	"time"
 )
@@ -61,7 +62,7 @@ func Server() { // check the implementation usign "github.com/go-chi/chi/v5"
 		fmt.Fprintf(w, "404 - Page not found: %s", r.URL.Path)
 	})
 
-	port := ":8080"
+	port := ":" + utils.LoadPort()
 
 	server := &http.Server{
 		Addr:         port,

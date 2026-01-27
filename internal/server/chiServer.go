@@ -3,6 +3,7 @@ package server
 import (
 	"fmt"
 	"io"
+	"main/internal/utils"
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
@@ -62,7 +63,7 @@ func CreateChiServer() {
 		fmt.Fprint(w, "404 - Page not found fuck you: ", r.URL.Path)
 	})
 
-	serverPort := ":8080"
+	serverPort := ":" + utils.LoadPort()
 
 	fmt.Println("Chi server started on ", serverPort)
 
