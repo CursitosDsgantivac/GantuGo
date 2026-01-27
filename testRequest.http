@@ -1,0 +1,45 @@
+# this requests work with the extension REST Client in VSCode 
+
+@hostname = http://localhost:8080
+
+
+GET {{hostname}}/test HTTP/1.1
+Content-Type: application/json
+
+
+###
+
+GET {{hostname}}/invented HTTP/1.1
+Content-Type: application/json
+
+
+###
+POST {{hostname}}/test HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "John Doe",
+    "age": 30,
+    "email": "[EMAIL_ADDRESS]"
+}
+
+###
+PUT {{hostname}}/test/123 HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "John Doe",
+    "age": 30,
+    "email": "[EMAIL_ADDRESS]"
+}
+
+
+### 
+POST {{hostname}}/test/api HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "John Doe",
+    "age": 30,
+    "email": "[EMAIL_ADDRESS]"
+}

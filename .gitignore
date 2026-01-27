@@ -1,0 +1,25 @@
+.env*
+gantuProgram
+
+# Binaries
+/bin
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binaries
+*.test
+
+# Output
+*.out
+
+# Vendor (optional - only if you use go mod vendor)
+/vendor/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  gantuGoLang:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    # volumes:
+    #   - .:/app
+    #   - /app/bin
+    environment:
+      - TEST_ENV=test
+    command: ["./gantuProgram", "chiServer"]
