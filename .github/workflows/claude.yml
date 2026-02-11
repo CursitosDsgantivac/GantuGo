@@ -21,7 +21,7 @@ jobs:
       (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
     runs-on: ubuntu-latest
     # SECURITY: Use a protected environment — requires your approval + secrets are scoped here
-    environment: claude-env
+    # environment: claude-env
 
     permissions:
       contents: write
