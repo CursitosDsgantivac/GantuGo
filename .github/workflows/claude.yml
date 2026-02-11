@@ -14,11 +14,12 @@ jobs:
   claude:
     # SECURITY: Only run when YOU trigger it — prevents anyone else from using your API key
     if: |
-      github.event.sender.login == 'dsgantivac' && 
+      github.event.sender.login == 'dsgantivac' && (
       (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
       (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
       (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
       (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
+      )
     runs-on: ubuntu-latest
     # SECURITY: Use a protected environment — requires your approval + secrets are scoped here
     # environment: claude-env
@@ -34,6 +35,10 @@ jobs:
         uses: actions/checkout@v6
         with:
           fetch-depth: 1
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23' # adjust to your version
 
       - name: Run Claude Code
         id: claude
