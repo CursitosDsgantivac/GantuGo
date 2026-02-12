@@ -20,6 +20,8 @@ func main() {
 		server.Server()
 	case "chiServer":
 		server.CreateChiServer()
+	case "mcpServer":
+		server.Start()
 	case "utils":
 		utils.LoadEnvVariables()
 	default:
