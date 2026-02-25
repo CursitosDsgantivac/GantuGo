@@ -94,7 +94,7 @@ The MCP server provides a `greet` tool that can be called by Claude to say hi to
 
 ### Prerequisites
 
-1. Download the appropriate binary for your OS from the [Releases](https://github.com/YOUR_USERNAME/YOUR_REPO/releases) page
+1. Download the appropriate binary for your OS from the [Releases](https://github.com/CursitosDsgantivac/GantuGo/releases) page
 2. Make the binary executable (Linux/macOS only)
 
 ### Windows Setup

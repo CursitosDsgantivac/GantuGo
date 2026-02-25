@@ -14,14 +14,16 @@ func main() {
 		os.Exit(1)
 	}
 	var arg = os.Args[1]
-	utils.LoadEnvVariables()
 
 	switch arg {
 	case "server":
+		utils.LoadEnvVariables()
 		httpServer.Server()
 	case "chiServer":
+		utils.LoadEnvVariables()
 		httpServer.CreateChiServer()
 	case "mcpServer":
+		utils.LoadEnvVariables()
 		mcpServer.StartMCP()
 	case "mcpServerHttp":
 		mcpServer.StartHttpMCP()
