@@ -36,7 +36,7 @@ func NewMySqlConnection() (*MySqlConnection, error) {
 	}
 
 	// Build DSN (Data Source Name)
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", user, password, host, port, database)
+	dsn := user + ":" + password + "@tcp(" + host + ":" + port + ")/" + database
 
 	// Open database connection
 	db, err := sql.Open("mysql", dsn)

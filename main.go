@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"main/internal/server"
+	httpServer "main/internal/server/http"
+	mcpServer "main/internal/server/mcp"
 	"main/internal/utils"
 	"os"
 )
@@ -17,11 +18,15 @@ func main() {
 
 	switch arg {
 	case "server":
-		server.Server()
+		httpServer.Server()
 	case "chiServer":
-		server.CreateChiServer()
+		httpServer.CreateChiServer()
 	case "mcpServer":
-		server.Start()
+		mcpServer.StartMCP()
+	case "mcpServerHttp":
+		mcpServer.StartHttpMCP()
+	case "mcpServerBinary":
+		mcpServer.StartMCPBinary()
 	case "utils":
 		utils.LoadEnvVariables()
 	default:

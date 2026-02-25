@@ -35,7 +35,7 @@ type MCPError struct {
 }
 
 // Start initializes and starts the MCP server
-func Start() {
+func StartHttpMCP() {
 	mux := http.NewServeMux()
 
 	// Health check endpoint
