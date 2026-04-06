@@ -26,6 +26,7 @@ build: vet
 	go build -o gantuProgram
 
 run: build
+	echo "Running with argument: ${ARG}"
 	./gantuProgram ${ARG}
 
 clean: run

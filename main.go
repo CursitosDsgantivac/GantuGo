@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"main/internal/messageBroker/RabbitMq"
 	httpServer "main/internal/server/http"
 	mcpServer "main/internal/server/mcp"
 	"main/internal/utils"
@@ -31,6 +32,10 @@ func main() {
 		mcpServer.StartMCPBinary()
 	case "utils":
 		utils.LoadEnvVariables()
+	case "rabbitConsummer":
+		RabbitMq.StartRabbitMqConsumer()
+	case "rabbitPublisher":
+		RabbitMq.StartRabbitMqPublisher()
 	default:
 		fmt.Println("Invalid argument: " + arg)
 		os.Exit(1)
