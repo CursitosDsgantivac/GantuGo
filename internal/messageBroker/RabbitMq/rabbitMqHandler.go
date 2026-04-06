@@ -1,16 +1,16 @@
 package RabbitMq
 
 import (
-	"bufio"
 	"context"
-	"fmt"
 	"log"
-	"os"
+	"strconv"
+	"time"
 )
 
 /*
 Library github.com/rabbitmq/amqp091-go
 */
+const AMQP_URL = "amqp://guest:guest@localhost:5672/"
 
 var queueConfig = QueueConfig{
 	ExchangeName: "go-exchange", // exchange name
@@ -21,7 +21,7 @@ var queueConfig = QueueConfig{
 func StartRabbitMqConsumer() {
 	// create queue and exchange
 
-	cc, err := NewConsumerConnection("amqp://guest:guest@localhost:5672/")
+	cc, err := NewConsumerConnection(AMQP_URL)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -52,7 +52,7 @@ func StartRabbitMqPublisher() {
 	ctx := context.Background()
 
 	// 1. Open a publisher connection (or consumer — same setup call)
-	pc, err := NewPublisherConnection("amqp://guest:guest@localhost:5672/")
+	pc, err := NewPublisherConnection(AMQP_URL)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -68,14 +68,41 @@ func StartRabbitMqPublisher() {
 	}
 
 	// 4a. Publish a message using the exchange
-	scanner := bufio.NewScanner(os.Stdin)
+	// scanner := bufio.NewScanner(os.Stdin)
 	for {
-		fmt.Println("Write the message and press enter to publish")
-		scanner.Scan() // reads the full line including spaces
-		message := scanner.Text()
-		err = PublishMessage(ctx, pc, cfg.ExchangeName, []byte(message))
-		if err != nil {
-			log.Fatal(err)
+		/*
+			// Publish message mannually from terminal
+			fmt.Println("Write the message and press enter to publish")
+			scanner.Scan() // reads the full line including spaces
+			message := scanner.Text()
+			err = PublishMessage(ctx, pc, cfg.ExchangeName, []byte(message))
+			if err != nil {
+				log.Fatal(err)
+			}
+		*/
+
+		rabbitChannel := make(chan []byte, 1000)
+
+		for range 1 {
+			go func() {
+				for j := 0; j < 1000000; j++ {
+					rabbitChannel <- []byte("test " + strconv.Itoa(j))
+				}
+			}()
 		}
+
+		ratePerSecond := 1000
+
+		ticker := time.NewTicker(time.Second / time.Duration(ratePerSecond))
+		defer ticker.Stop()
+
+		for msg := range rabbitChannel {
+			<-ticker.C // block here until the next tick slot is available
+			err = PublishMessage(ctx, pc, cfg.ExchangeName, msg)
+			if err != nil {
+				log.Fatal(err)
+			}
+		}
+
 	}
 }
